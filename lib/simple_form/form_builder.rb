@@ -563,6 +563,7 @@ module SimpleForm
     # 2) If not, fallbacks to #{input_type}Input
     # 3) If not, fallbacks to SimpleForm::Inputs::#{input_type}Input
     def find_mapping(input_type)
+      input_type = :string if input_type == :inet
       discovery_cache[input_type] ||=
         if mapping = self.class.mappings[input_type]
           mapping_override(mapping) || mapping
